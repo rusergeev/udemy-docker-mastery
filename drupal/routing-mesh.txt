@@ -1,0 +1,4 @@
+docker network create --driver overlay mydrupal
+ docker service create --name postgres --network mydrupal -e POSTGRESS_PASSWORD=example --detach=true --replicas 2 postgres
+ docker service create --name drupal --network mydrupal -p 80:80 --detach=false --replicas 3 -v /path/on/host/modules:/var/www/html/modules \
+-v /path/on/host/profiles:/var/www/html/profiles -v /path/on/host/sites:/var/www/html/sites -v /path/on/host/themes:/var/www/html/themes drupal
